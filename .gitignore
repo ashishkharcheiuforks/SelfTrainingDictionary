@@ -1,0 +1,11 @@
+build
+*.iml
+.idea/*
+.gradle
+#gradle.properties
+local.properties
+projectFilesBackup
+projectFilesBackup1
+projectFilesBackup2
+projectFilesBackup3
+driven/*
