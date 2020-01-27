@@ -1,8 +1,10 @@
 package com.san4o.just4fun.selftrainingdictionary.domain
 
-import kotlinx.coroutines.flow.Flow
+import androidx.lifecycle.LiveData
 
 interface IrregularVerbRepository {
 
-    fun wordsList(): Flow<List<IrregularVerbItem>>
+    suspend fun wordsList(): List<IrregularVerbItem>
+
+    fun wordsLiveData(): LiveData<List<IrregularVerbItem>>
 }

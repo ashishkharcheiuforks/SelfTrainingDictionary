@@ -3,7 +3,7 @@ package com.san4o.just4fun.selftrainingdictionary.di.modules.subcomponents
 import androidx.lifecycle.ViewModel
 import com.san4o.just4fun.selftrainingdictionary.di.viewmodel.ViewModelKey
 import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbRepository
-import com.san4o.just4fun.selftrainingdictionary.presentation.IrregualrVersListViewModel
+import com.san4o.just4fun.selftrainingdictionary.presentation.irregular.list.IrregualrVersListViewModel
 import com.san4o.just4fun.selftrainingdictionary.ui.IrrgularVerbsListFragment
 import dagger.Binds
 import dagger.Module
@@ -20,7 +20,9 @@ class IrregularVerbsListModule {
 
     @Provides
     fun provideIrregualrVersListViewModel(repository: IrregularVerbRepository) =
-        IrregualrVersListViewModel(repository)
+        IrregualrVersListViewModel(
+            repository
+        )
 }
 
 @Module

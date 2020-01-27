@@ -9,7 +9,7 @@ android {
 
     compileSdkVersion build_versions.targetSdk
     defaultConfig {
-        applicationId "ru.sportmaster.android.driven.salespoint"
+        applicationId "com.san4o.just4fun.selftrainingdictionary"
         minSdkVersion build_versions.minSdk
         targetSdkVersion build_versions.targetSdk
         versionCode build_versions.versionCode

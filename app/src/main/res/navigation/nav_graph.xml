@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/irrgularVerbsListFragment">
+    app:startDestination="@id/irregularVerbWriteQuizFragment">
 
     <fragment
         android:id="@+id/wordsFragment"
@@ -18,5 +18,22 @@
         android:id="@+id/irrgularVerbsListFragment"
         android:name="com.san4o.just4fun.selftrainingdictionary.ui.IrrgularVerbsListFragment"
         android:label="fragment_irrgular_verbs_list"
-        tools:layout="@layout/fragment_irrgular_verbs_list" />
+        tools:layout="@layout/fragment_irrgular_verbs_list" >
+        <action
+            android:id="@+id/action_irrgularVerbsListFragment_to_irregularVerbsTestFragment"
+            app:destination="@id/irregularVerbsTestFragment" />
+        <action
+            android:id="@+id/action_irrgularVerbsListFragment_to_irregularVerbWriteQuizFragment"
+            app:destination="@id/irregularVerbWriteQuizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/irregularVerbsTestFragment"
+        android:name="com.san4o.just4fun.selftrainingdictionary.ui.IrregularVerbsQuizFragment"
+        android:label="fragment_irregular_verbs_test"
+        tools:layout="@layout/fragment_irregular_verbs_quiz" />
+    <fragment
+        android:id="@+id/irregularVerbWriteQuizFragment"
+        android:name="com.san4o.just4fun.selftrainingdictionary.ui.IrregularVerbWriteQuizFragment"
+        android:label="fragment_irregular_verb_write_quiz"
+        tools:layout="@layout/fragment_irregular_verb_write_quiz" />
 </navigation>
