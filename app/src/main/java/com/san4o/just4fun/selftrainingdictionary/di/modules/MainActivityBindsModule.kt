@@ -1,17 +1,22 @@
 package com.san4o.just4fun.selftrainingdictionary.di.modules
 
-import com.san4o.just4fun.selftrainingdictionary.di.modules.subcomponents.IrregularVerbsListModule
-import com.san4o.just4fun.selftrainingdictionary.ui.IrregularVerbWriteQuizFragment
+import com.san4o.just4fun.selftrainingdictionary.ui.IrregularVerbsListFragment
+import com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbWriteQuizFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module(
     includes = [
-        IrregularVerbsListModule::class
+        MainViewModelsBindsModule::class,
+        MainViewModelModule::class,
+        MainModule::class
     ]
 )
 interface MainActivityBindsModule {
 
     @ContributesAndroidInjector
     fun IrregularVerbWriteQuizFragmentInjector(): IrregularVerbWriteQuizFragment
+
+    @ContributesAndroidInjector
+    fun IrregularVerbsListFragmentInjector(): IrregularVerbsListFragment
 }

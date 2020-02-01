@@ -8,7 +8,6 @@ import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Provider
-import javax.inject.Singleton
 
 @Module(
     includes = [
@@ -17,14 +16,13 @@ import javax.inject.Singleton
 )
 class AppModule {
 
-    @Singleton
+
     @Provides
     fun provideViewModelFactory(
-        creators: Map<Class<out ViewModel?>, Provider<ViewModel?>>
+        creators: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
     ): ViewModelFactory {
         return ViewModelFactory(creators)
     }
-
 
     @Provides
     fun provideIrregularVerbRepository(

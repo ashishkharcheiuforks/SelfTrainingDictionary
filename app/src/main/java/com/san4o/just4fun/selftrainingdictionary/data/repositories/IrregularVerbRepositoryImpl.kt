@@ -26,6 +26,7 @@ class IrregularVerbRepositoryImpl(
     private fun convert(entity: IrregularVerbWordEntity): IrregularVerbItem {
         return IrregularVerbItem(
             id = entity.id,
+            translation = entity.translation,
             present = entity.present,
             past = entity.past,
             perfect = entity.perfect

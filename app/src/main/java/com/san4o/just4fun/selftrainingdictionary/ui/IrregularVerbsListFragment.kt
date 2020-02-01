@@ -8,23 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.san4o.just4fun.selftrainingdictionary.R
 import com.san4o.just4fun.selftrainingdictionary.databinding.FragmentIrrgularVerbsListBinding
 import com.san4o.just4fun.selftrainingdictionary.databinding.IrregularVerbListItemBinding
+import com.san4o.just4fun.selftrainingdictionary.di.lifecycle.AppScopeMember
 import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbItem
-import com.san4o.just4fun.selftrainingdictionary.presentation.irregular.list.IrregualrVersListViewModel
+import com.san4o.just4fun.selftrainingdictionary.presentation.irregular.list.IrregularVersListViewModel
 import com.san4o.just4fun.selftrainingdictionary.ui.base.DataBindingViewHolder
 import com.san4o.just4fun.selftrainingdictionary.ui.base.RecyclerViewListAdapter
 import com.san4o.just4fun.selftrainingdictionary.ui.base.observeData
 import javax.inject.Inject
 
-class IrrgularVerbsListFragment : Fragment() {
+class IrregularVerbsListFragment : Fragment(), AppScopeMember {
 
     @Inject
-    lateinit var viewModel: IrregualrVersListViewModel
+    lateinit var factory: ViewModelProvider.Factory
 
     lateinit var binding: FragmentIrrgularVerbsListBinding
 
@@ -55,12 +58,13 @@ class IrrgularVerbsListFragment : Fragment() {
             DividerItemDecoration(requireContext(), layoutManager.orientation)
         recyclerView.addItemDecoration(dividerItemDecoration)
 
+        val viewModel by viewModels<IrregularVersListViewModel> { factory }
         viewModel.items.observeData(this) {
                 adapter.refreshItems(it)
             }
 
         binding.addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_irrgularVerbsListFragment_to_irregularVerbsTestFragment)
+            findNavController().navigate(R.id.action_irrgularVerbsListFragment_to_irregularVerbWriteQuizFragment)
         }
     }
 

@@ -12,13 +12,17 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.san4o.just4fun.selftrainingdictionary.R
+import com.san4o.just4fun.selftrainingdictionary.di.lifecycle.AppScopeMember
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HasAndroidInjector {
+class MainActivity : AppCompatActivity(),
+    NavigationView.OnNavigationItemSelectedListener,
+    HasAndroidInjector,
+    AppScopeMember {
     @Inject
     lateinit var androidInjector:DispatchingAndroidInjector<Any>
 

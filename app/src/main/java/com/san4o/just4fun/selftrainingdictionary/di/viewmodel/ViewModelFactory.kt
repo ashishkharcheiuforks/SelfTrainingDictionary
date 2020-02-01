@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import javax.inject.Provider
 
 class ViewModelFactory(
-    private val creators: Map<Class<out ViewModel?>, Provider<ViewModel?>>) :
-    ViewModelProvider.Factory {
+    private val creators: MutableMap<Class<out ViewModel>, Provider<ViewModel>>
+) : ViewModelProvider.Factory {
 
     @NonNull
     override fun <T : ViewModel> create(@NonNull modelClass: Class<T>): T {

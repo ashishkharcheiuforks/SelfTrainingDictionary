@@ -2,4 +2,7 @@
 <resources>
     <dimen name="irregular_quiz_label_text_size">24sp</dimen>
     <dimen name="irregular_quiz_value_text_size">32sp</dimen>
+    <dimen name="irregular_quiz_answer_text_size">16sp</dimen>
+    <dimen name="irregular_quiz_translate_text_size">18sp</dimen>
+    <dimen name="button_margin">8dp</dimen>
 </resources>

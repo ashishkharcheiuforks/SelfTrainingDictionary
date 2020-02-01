@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbItem
 import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbRepository
 
-class IrregualrVersListViewModel(
+class IrregularVersListViewModel(
     private val repository: IrregularVerbRepository
 ) : ViewModel() {
     val items: LiveData<List<IrregularVerbItem>> = repository.wordsLiveData()

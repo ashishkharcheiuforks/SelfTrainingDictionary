@@ -1,7 +1,10 @@
 <resources>
-    <!--    <string name="app_name">SelfTrainingDictionary</string>-->
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="current_number_of_text_format">%d / %d</string>
+    <string name="next">Дальше</string>
+    <string name="end">Закончить</string>
+    <string name="percent_text_format">%d%%</string>
+    <string name="irregular_verb_full_text_format">%s - %s - %s</string>
+    <string name="in_brackets_text_format">(%s)</string>
+    <string name="text_ok">OK</string>
 </resources>
