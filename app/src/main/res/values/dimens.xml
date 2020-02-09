@@ -5,4 +5,6 @@
     <dimen name="irregular_quiz_answer_text_size">16sp</dimen>
     <dimen name="irregular_quiz_translate_text_size">18sp</dimen>
     <dimen name="button_margin">8dp</dimen>
+    <dimen name="congraduate_text_size">24sp</dimen>
+
 </resources>

@@ -4,21 +4,33 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.san4o.just4fun.selftrainingdictionary.data.local.converters.DateConverter
+import com.san4o.just4fun.selftrainingdictionary.data.local.converters.IrregularVerbQuizResultConverter
 import com.san4o.just4fun.selftrainingdictionary.data.local.dao.IrregularVerbsDao
+import com.san4o.just4fun.selftrainingdictionary.data.local.dao.IrregularVerbsQuizDao
+import com.san4o.just4fun.selftrainingdictionary.data.local.entities.IrregularVerbQuizEntity
+import com.san4o.just4fun.selftrainingdictionary.data.local.entities.IrregularVerbQuizItemEntity
 import com.san4o.just4fun.selftrainingdictionary.data.local.entities.IrregularVerbWordEntity
 import kotlinx.coroutines.runBlocking
 import org.apache.commons.io.IOUtils
-import timber.log.Timber
 import java.nio.charset.StandardCharsets
 
 @Database(
     entities = [
-        IrregularVerbWordEntity::class
+        IrregularVerbWordEntity::class,
+        IrregularVerbQuizEntity::class,
+        IrregularVerbQuizItemEntity::class
     ],
     version = 1
 )
+@TypeConverters(
+    DateConverter::class,
+    IrregularVerbQuizResultConverter::class
+)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun provideIrregularVerbsDao(): IrregularVerbsDao
+    abstract fun provideIrregularVerbsQuizDao(): IrregularVerbsQuizDao
 
     companion object {
         fun create(context: Context): AppDatabase {
@@ -40,7 +52,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val inputStream = context.assets.open("irregular_verbs.txt")
                 val readLines = IOUtils.readLines(inputStream, StandardCharsets.UTF_8)
 
-                readLines.forEach { Timber.d(it) }
+
                 IrregularVerbsProvider.insertFirstValues(
                     database.provideIrregularVerbsDao(),
                     context

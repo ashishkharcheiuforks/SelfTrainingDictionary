@@ -1,6 +1,7 @@
 package com.san4o.just4fun.selftrainingdictionary
 
 import android.app.Application
+import com.amitshekhar.DebugDB
 import com.san4o.just4fun.selftrainingdictionary.di.AppComponent
 import com.san4o.just4fun.selftrainingdictionary.di.DaggerAppComponent
 import com.san4o.just4fun.selftrainingdictionary.di.lifecycle.DaggerActivityLifecycleCallback
@@ -21,6 +22,7 @@ class App : Application(), HasAndroidInjector {
         super.onCreate()
 
         Timber.plant(Timber.DebugTree())
+        Timber.d(">>> address : " + DebugDB.getAddressLog())
 
         registerActivityLifecycleCallbacks(DaggerActivityLifecycleCallback())
         initDagger(this)

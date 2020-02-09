@@ -1,7 +1,8 @@
 package com.san4o.just4fun.selftrainingdictionary.di.modules
 
 import com.san4o.just4fun.selftrainingdictionary.ui.IrregularVerbsListFragment
-import com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbWriteQuizFragment
+import com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbQuizFragment
+import com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbQuizResultErrorFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,8 +16,11 @@ import dagger.android.ContributesAndroidInjector
 interface MainActivityBindsModule {
 
     @ContributesAndroidInjector
-    fun IrregularVerbWriteQuizFragmentInjector(): IrregularVerbWriteQuizFragment
+    fun WriteAnswersIrregularVerbQuizFragmentInjector(): IrregularVerbQuizFragment
 
     @ContributesAndroidInjector
     fun IrregularVerbsListFragmentInjector(): IrregularVerbsListFragment
+
+    @ContributesAndroidInjector
+    fun IrregularVerbQuizResultErrorFragmentInjector(): IrregularVerbQuizResultErrorFragment
 }

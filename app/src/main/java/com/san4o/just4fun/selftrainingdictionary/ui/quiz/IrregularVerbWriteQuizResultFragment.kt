@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.san4o.just4fun.selftrainingdictionary.R
-import com.san4o.just4fun.selftrainingdictionary.databinding.FragmentIrregularVerbWriteQuizResultBinding
+import com.san4o.just4fun.selftrainingdictionary.databinding.FragmentQuizResultBinding
 import com.san4o.just4fun.selftrainingdictionary.presentation.base.FunctionViewModelFactory
 import com.san4o.just4fun.selftrainingdictionary.presentation.irregular.quizwrite.IrregularVerbWriteQuizResultViewModel
 
@@ -27,16 +27,16 @@ class IrregularVerbWriteQuizResultFragment : Fragment() {
         }
     }
 
-    lateinit var binding: FragmentIrregularVerbWriteQuizResultBinding
+    lateinit var binding: FragmentQuizResultBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate<FragmentIrregularVerbWriteQuizResultBinding>(
+        binding = DataBindingUtil.inflate<FragmentQuizResultBinding>(
             inflater,
-            R.layout.fragment_irregular_verb_write_quiz_result,
+            R.layout.fragment_quiz_result,
             container,
             false
         )

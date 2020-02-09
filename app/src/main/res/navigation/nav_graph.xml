@@ -20,28 +20,41 @@
         android:label="fragment_irrgular_verbs_list"
         tools:layout="@layout/fragment_irrgular_verbs_list" >
         <action
-            android:id="@+id/action_irrgularVerbsListFragment_to_irregularVerbsTestFragment"
-            app:destination="@id/irregularVerbsTestFragment" />
-        <action
-            android:id="@+id/action_irrgularVerbsListFragment_to_irregularVerbWriteQuizFragment"
-            app:destination="@id/irregularVerbWriteQuizFragment" />
+            android:id="@+id/action_irrgularVerbsListFragment_to_writeAnswersIrregularVerbQuizFragment"
+            app:destination="@id/writeAnswersIrregularVerbQuizFragment" />
     </fragment>
     <fragment
-        android:id="@+id/irregularVerbsTestFragment"
-        android:name="com.san4o.just4fun.selftrainingdictionary.ui.IrregularVerbsQuizFragment"
-        android:label="fragment_irregular_verbs_test"
-        tools:layout="@layout/fragment_irregular_verbs_quiz" />
-    <fragment
-        android:id="@+id/irregularVerbWriteQuizFragment"
-        android:name="com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbWriteQuizFragment"
-        android:label="fragment_irregular_verb_write_quiz"
-        tools:layout="@layout/fragment_irregular_verb_write_quiz">
+        android:id="@+id/writeAnswersIrregularVerbQuizFragment"
+        android:name="com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbQuizFragment"
+        android:label="WriteAnswersIrregularVerbQuizFragment"
+        tools:layout="@layout/fragment_irregular_verbs_quiz">
         <action
-            android:id="@+id/action_irregularVerbWriteQuizFragment_to_irregularVerbWriteQuizResultFragment"
-            app:destination="@id/irregularVerbWriteQuizResultFragment" />
+            android:id="@+id/action_writeAnswersIrregularVerbQuizFragment_to_irregularVerbQuizResultErrorFragment"
+            app:destination="@id/irregularVerbQuizResultErrorFragment"
+            app:popUpTo="@+id/irrgularVerbsListFragment" />
+        <action
+            android:id="@+id/action_writeAnswersIrregularVerbQuizFragment_to_irregularVerbQuizResultFragment"
+            app:destination="@id/irregularVerbQuizResultFragment"
+            app:popUpTo="@+id/irrgularVerbsListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/irregularVerbWriteQuizResultFragment"
-        android:name="com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbWriteQuizResultFragment"
-        android:label="IrregularVerbWriteQuizResultFragment" />
+        android:id="@+id/irregularVerbQuizResultErrorFragment"
+        android:name="com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbQuizResultErrorFragment"
+        android:label="fragment_write_answer_irregular_verb_quiz_result"
+        tools:layout="@layout/fragment_irregular_verbs_quiz_result_errors">
+        <action
+            android:id="@+id/action_irregularVerbQuizResultErrorFragment_to_irrgularVerbsListFragment"
+            app:destination="@id/irrgularVerbsListFragment"
+            app:popUpTo="@+id/irrgularVerbsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/irregularVerbQuizResultFragment"
+        android:name="com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbQuizResultFragment"
+        android:label="IrregularVerbQuizResultFragment"
+        tools:layout="@layout/fragment_irregular_verbs_quiz_result">
+        <action
+            android:id="@+id/action_irregularVerbQuizResultFragment_to_irrgularVerbsListFragment"
+            app:destination="@id/irrgularVerbsListFragment"
+            app:popUpTo="@+id/irrgularVerbsListFragment" />
+    </fragment>
 </navigation>

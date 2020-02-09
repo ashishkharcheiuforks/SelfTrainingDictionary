@@ -7,4 +7,11 @@
     <string name="irregular_verb_full_text_format">%s - %s - %s</string>
     <string name="in_brackets_text_format">(%s)</string>
     <string name="text_ok">OK</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="congraduate_words">Молодец! Так держать!</string>
+    <string name="was_errors_in_words">Были ошибки в словах:</string>
+    <string name="start_test">Начать тест</string>
+    <string name="continue_test">Продолжить тест(%1$d/%2$d)</string>
 </resources>

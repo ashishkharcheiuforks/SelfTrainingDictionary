@@ -32,6 +32,15 @@ class IrregularVerbsProviderTest {
         verify(dao, atLeastOnce()).insertOrSkip(any())
     }
 
+    @Test
+    fun testInsertLongTranslationWords() = runBlocking() {
+        val dao = mock<IrregularVerbsDao>()
+
+        IrregularVerbsProvider.insertFirstValues(dao, readLines("irregular_verbs.txt"))
+
+        verify(dao, atLeastOnce()).insertOrSkip(any())
+    }
+
     private fun readLines(name: String): List<String> {
         val file = File("src\\main\\assets\\$name")
         return FileUtils.readLines(file, StandardCharsets.UTF_8)

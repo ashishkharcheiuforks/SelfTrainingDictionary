@@ -32,13 +32,14 @@ android {
         }
         debug {
             minifyEnabled false
-//            testCoverageEnabled true
+//            testCoverageEnabled true C:\Users\aleks\AppData\Local\Android\Sdk\platform-tools
+//            resValue("string", "PORT_NUMBER", "8623")
         }
     }
 
     flavorDimensions("mode")
     productFlavors {
-        def DEFAULT_APP_NAME = "МРМ Кассира"
+        def DEFAULT_APP_NAME = "Самотренинг"
 
         dev {
             applicationIdSuffix "dev"
@@ -87,6 +88,7 @@ android {
 }
 
 dependencies {
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 //    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
     // Kotlin

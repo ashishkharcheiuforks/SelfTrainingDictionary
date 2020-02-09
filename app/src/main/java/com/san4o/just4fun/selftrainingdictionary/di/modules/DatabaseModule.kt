@@ -3,6 +3,7 @@
 import android.content.Context
 import com.san4o.just4fun.selftrainingdictionary.data.local.AppDatabase
 import com.san4o.just4fun.selftrainingdictionary.data.local.dao.IrregularVerbsDao
+import com.san4o.just4fun.selftrainingdictionary.data.local.dao.IrregularVerbsQuizDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,7 +20,11 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provide(database: AppDatabase): IrregularVerbsDao {
-        return database.provideIrregularVerbsDao()
-    }
+    fun provideIrregularVerbsDao(database: AppDatabase): IrregularVerbsDao =
+        database.provideIrregularVerbsDao()
+
+    @Provides
+    fun provideIrregularVerbsQuizDao(database: AppDatabase): IrregularVerbsQuizDao =
+        database.provideIrregularVerbsQuizDao()
+
 }

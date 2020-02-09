@@ -17,11 +17,11 @@ import com.san4o.just4fun.selftrainingdictionary.R
 import com.san4o.just4fun.selftrainingdictionary.databinding.FragmentIrrgularVerbsListBinding
 import com.san4o.just4fun.selftrainingdictionary.databinding.IrregularVerbListItemBinding
 import com.san4o.just4fun.selftrainingdictionary.di.lifecycle.AppScopeMember
-import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbItem
+import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbListItem
+import com.san4o.just4fun.selftrainingdictionary.presentation.irregular.list.Current
 import com.san4o.just4fun.selftrainingdictionary.presentation.irregular.list.IrregularVersListViewModel
-import com.san4o.just4fun.selftrainingdictionary.ui.base.DataBindingViewHolder
-import com.san4o.just4fun.selftrainingdictionary.ui.base.RecyclerViewListAdapter
-import com.san4o.just4fun.selftrainingdictionary.ui.base.observeData
+import com.san4o.just4fun.selftrainingdictionary.ui.base.*
+import com.san4o.just4fun.selftrainingdictionary.ui.quiz.IrregularVerbQuizFragment
 import javax.inject.Inject
 
 class IrregularVerbsListFragment : Fragment(), AppScopeMember {
@@ -30,6 +30,8 @@ class IrregularVerbsListFragment : Fragment(), AppScopeMember {
     lateinit var factory: ViewModelProvider.Factory
 
     lateinit var binding: FragmentIrrgularVerbsListBinding
+
+    lateinit var viewModel: IrregularVersListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,25 +61,55 @@ class IrregularVerbsListFragment : Fragment(), AppScopeMember {
         recyclerView.addItemDecoration(dividerItemDecoration)
 
         val viewModel by viewModels<IrregularVersListViewModel> { factory }
+        this.viewModel = viewModel
         viewModel.items.observeData(this) {
-                adapter.refreshItems(it)
-            }
+            adapter.refreshItems(it)
+        }
 
         binding.addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_irrgularVerbsListFragment_to_irregularVerbWriteQuizFragment)
+            viewModel.onStartQuiz()
         }
+
+        viewModel.notifyErrorEvent.observeVoidEvent(this) {
+            notifyError()
+        }
+        viewModel.currentQuiz.observeData(this) {
+            when (it) {
+                is Current.None -> {
+                    binding.addButton.text = requireContext().getString(R.string.start_test)
+                }
+                is Current.Quiz -> {
+                    binding.addButton.text = requireContext()
+                        .getString(R.string.continue_test, it.current, it.total)
+                }
+            }
+        }
+        viewModel.startQuiz.observeData(this) {
+            findNavController()
+                .navigate(
+                    R.id.action_irrgularVerbsListFragment_to_writeAnswersIrregularVerbQuizFragment,
+                    IrregularVerbQuizFragment.arguments(it.id)
+                )
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        viewModel.refreshState()
     }
 
 
     class RecyclerViewAdapter :
-        RecyclerViewListAdapter<RecyclerViewAdapter.AdapterViewHolder, IrregularVerbItem>() {
+        RecyclerViewListAdapter<RecyclerViewAdapter.AdapterViewHolder, IrregularVerbListItem>() {
 
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
             return create(parent.context, parent)
         }
 
-        override fun setItem(holder: AdapterViewHolder, item: IrregularVerbItem) {
+        override fun setItem(holder: AdapterViewHolder, item: IrregularVerbListItem) {
             holder.setModel(item)
         }
 
@@ -94,8 +126,11 @@ class IrregularVerbsListFragment : Fragment(), AppScopeMember {
         class AdapterViewHolder(
             binding: IrregularVerbListItemBinding
         ) : DataBindingViewHolder<IrregularVerbListItemBinding>(binding) {
-            fun setModel(item: IrregularVerbItem) {
-                binding.text.text = "${item.present} - ${item.past} - ${item.perfect}"
+            fun setModel(item: IrregularVerbListItem) {
+                binding.text.text =
+                    "${item.verb.present} - ${item.verb.past} - ${item.verb.perfect}"
+                binding.wrong.text = item.wrong.toString()
+                binding.correct.text = item.correct.toString()
             }
 
         }

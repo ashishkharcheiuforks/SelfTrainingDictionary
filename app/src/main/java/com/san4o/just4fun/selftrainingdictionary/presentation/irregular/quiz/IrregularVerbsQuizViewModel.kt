@@ -3,12 +3,12 @@ package com.san4o.just4fun.selftrainingdictionary.presentation.irregular.quiz
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbItem
-import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbRepository
+import com.san4o.just4fun.selftrainingdictionary.domain.IrregularVerbListItem
+
 import kotlinx.coroutines.launch
 
 class IrregularVerbsQuizViewModel(
-    private val repository: IrregularVerbRepository
+
 ) : ViewModel(), IrregularVerbsQuizContract.Interactor {
 
     private val _state = IrregularVerbsQuizViewState()
@@ -23,10 +23,6 @@ class IrregularVerbsQuizViewModel(
         viewModelScope.launch {
             questions.clear()
 
-            val wordsList = repository.wordsList()
-            questions.addAll(
-                wordsList.map { createQuestion(wordsList, it) }
-            )
 
             currentQuestion = questions[currentIndex]
         }
@@ -47,12 +43,12 @@ class IrregularVerbsQuizViewModel(
     }
 
     private fun createQuestion(
-        words: List<IrregularVerbItem>,
-        item: IrregularVerbItem
+        words: List<IrregularVerbListItem>,
+        item: IrregularVerbListItem
     ): IrregularVerbsQuizQuestion {
-        val present = item.present
+        val present = item.verb.present
 
-        val random = UniqueQuestionFromList(words.map { it.present }, present)
+        val random = UniqueQuestionFromList(words.map { it.verb.present }, present)
 
         return IrregularVerbsQuizQuestion(
             valid = present,

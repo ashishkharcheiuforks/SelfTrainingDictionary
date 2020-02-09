@@ -15,22 +15,25 @@ object IrregularVerbsProvider {
     }
 
     internal suspend fun insertFirstValues(dao: IrregularVerbsDao, lines: List<String>) {
-        dao.removeAll()
+//        dao.removeAll()
         for ((index, line) in lines.withIndex()) {
             val entity: IrregularVerbWordEntity = parse(index + 1, line)
-            Timber.d("insert $entity")
-            dao.insertOrSkip(entity)
+            val find = dao.find(entity.present, entity.past, entity.perfect)
+            if (find == null) {
+                Timber.d("insert $entity")
+                dao.insertOrSkip(entity)
+            }
         }
 
     }
 
-    private fun parse(count: Int, line: String): IrregularVerbWordEntity {
+    private fun parse(number: Int, line: String): IrregularVerbWordEntity {
         val tokens = line
             .replace("\t", " ")
             .replace("  ", " ")
             .split(" ")
         if (tokens.size == 4) {
-            return defaultEntity(count, tokens)
+            return defaultEntity(number, tokens)
         }
         val newTokens = ArrayList<String>()
         var newTokenBuilder = StringBuilder()
@@ -54,7 +57,7 @@ object IrregularVerbsProvider {
         if (newTokens.size != 4) {
             throw RuntimeException("Error format of string : " + tokens.joinToString(" "))
         }
-        return defaultEntity(count, newTokens)
+        return defaultEntity(number, newTokens)
     }
 
     private fun defaultEntity(count: Int, tokens: List<String>): IrregularVerbWordEntity {

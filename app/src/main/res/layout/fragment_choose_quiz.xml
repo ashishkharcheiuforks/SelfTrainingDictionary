@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.san4o.just4fun.selftrainingdictionary.presentation.irregular.quiz.IrregularVerbsQuizContract.View" />
+
+        <variable
+            name="interactor"
+            type="com.san4o.just4fun.selftrainingdictionary.presentation.irregular.quiz.IrregularVerbsQuizContract.Interactor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.IrregularVerbsQuizFragment">
+
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/answer_button_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{model.question}"
+            tools:text="Question about something?" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/answer_button_4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/answer_button_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@{model.answer4}"
+            android:onClick="@{(v) -> interactor.onAnswer4()}"
+            tools:text="Answer 4" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/answer_button_3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/answer_button_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@{model.answer3}"
+            android:onClick="@{(v) -> interactor.onAnswer3()}"
+            tools:text="Answer 3" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/answer_button_2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/answer_button_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@{model.answer2}"
+            android:onClick="@{(v) -> interactor.onAnswer2()}"
+            tools:text="Answer 2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/answer_button_1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@{model.answer1}"
+            android:onClick="@{(v) -> interactor.onAnswer1()}"
+            tools:text="Answer 1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

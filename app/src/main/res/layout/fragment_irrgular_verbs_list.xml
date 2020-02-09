@@ -34,7 +34,7 @@
             android:id="@+id/add_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Начать тест"
+            android:text="@string/start_test"
             android:backgroundTint="@color/colorAccent"
             android:layout_gravity="bottom"
             />
